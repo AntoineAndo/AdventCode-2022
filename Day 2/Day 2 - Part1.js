@@ -10,9 +10,9 @@ fs.readFile("./D2.txt", "utf8", (err, input) => {
   const Y = 2; //paper
   const Z = 3; //scissor
 
-  const A = 1;
-  const B = 2;
-  const C = 3;
+  const A = 1; //rock
+  const B = 2; //paper
+  const C = 3; //scissor
 
   let r = input.split("\n").reduce((total, turn) => {
     const play = turn.split(" ");
