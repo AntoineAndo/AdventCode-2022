@@ -1,6 +1,13 @@
 const fs = require("fs");
 
 fs.readFile("./input.txt", "utf8", (err, input) => {
+  //   input = `30373
+  // 25512
+  // 65332
+  // 33549
+  // 35390
+  // `;
+
   const inputSplit = input.split("\n").filter((l) => l != "");
   const MAP_WIDTH = inputSplit[0].length;
   const MAP_LENGTH = inputSplit.length;
@@ -59,8 +66,10 @@ const topLookup = (inputSplit, x, y) => {
 const bottomLookup = (inputSplit, x, y) => {
   for (yy = y + 1; yy < inputSplit.length; yy++) {
     if (inputSplit[yy][x] >= inputSplit[y][x]) {
+      // console.log(inputSplit[y][x] + " NO " + inputSplit[yy][x]);
       return false;
     }
   }
+  // console.log(inputSplit[y][x], " OK");
   return true;
 };
