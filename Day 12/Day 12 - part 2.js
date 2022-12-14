@@ -2,11 +2,11 @@ const fs = require("fs");
 const { bfs } = require("../utils");
 
 fs.readFile("./input.txt", "utf8", (err, input) => {
-  input = `Sabqponm
-abcryxxl
-accszExk
-acctuvwj
-abdefghi`;
+  //   input = `Sabqponm
+  // abcryxxl
+  // accszExk
+  // acctuvwj
+  // abdefghi`;
 
   let rows = input.split("\n").filter((r) => r != "");
 
@@ -94,16 +94,28 @@ abdefghi`;
     }
   });
 
+  const initialPositions = [];
   rows.forEach((row, y) => {
     row.split("").forEach((cell, x) => {
       if (adjacencyMatrix[y] == undefined) {
         adjacencyMatrix[y] = [];
       }
       adjacencyMatrix[y][x] = getSurroundingCases(y, x);
+
+      if (cell == "a" || cell == "S") {
+        initialPositions.push([y, x]);
+      }
     });
   });
 
-  const result = bfs(initialPosition, targetPosition, adjacencyMatrix);
+  console.log(initialPositions);
+
+  const result = initialPositions
+    .map((start) => {
+      return bfs(start, targetPosition, adjacencyMatrix);
+    })
+    .sort()
+    .shift();
 
   console.log(result);
 });
